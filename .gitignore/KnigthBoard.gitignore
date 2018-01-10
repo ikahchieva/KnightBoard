@@ -1,0 +1,63 @@
+package chessBoard;
+
+public class chessBoard {
+public static void main(String[] args) {
+	char[][]arr={
+		{' ','k',' ',' ',' ',' ',' ',' '},
+		{' ',' ',' ',' ',' ',' ',' ',' '},
+		{' ',' ',' ',' ',' ',' ',' ',' '},
+		{' ',' ',' ',' ',' ',' ',' ',' '},
+		{' ',' ',' ',' ',' ',' ',' ',' '},
+		{' ','K',' ',' ',' ',' ',' ',' '},
+		{' ',' ',' ',' ',' ',' ',' ',' '},
+		{' ',' ',' ',' ',' ',' ',' ',' '},
+		{' ',' ',' ',' ',' ',' ',' ',' '}
+};
+	System.out.println(king(arr, 0, 1));
+}
+static boolean king(char[][]arr,int xbeg,int ybeg){
+	if(xbeg>arr.length || ybeg>arr.length)
+		return false;
+	if(arr[xbeg][ybeg]=='K')
+		return true;
+	//arr[xbeg][ybeg]='X';
+	if(isValid(xbeg-2,ybeg-1,arr)){
+		arr[xbeg-2][ybeg-1]='X';
+		return king(arr,xbeg-2,ybeg-1);
+	}
+	if(isValid(xbeg-2,ybeg+1,arr)){
+			//arr[xbeg-2][ybeg+1]='X';
+		return king(arr,xbeg-2,ybeg+1);
+		}
+	if(isValid(xbeg+2,ybeg-1,arr)){
+		//arr[xbeg+2][ybeg-1]='X';
+		return king(arr,xbeg+2,ybeg-1);
+	}
+	if(isValid(xbeg+2,ybeg+1,arr)){
+		//arr[xbeg+2][ybeg+1]='X';
+		return king(arr,xbeg+2,ybeg+1);
+	}
+	if(isValid(xbeg-1,ybeg-2,arr)){
+		//arr[xbeg-1][ybeg-2]='X';
+		return king(arr,xbeg-1,ybeg-2);
+	}
+	if(isValid(xbeg+1,ybeg-2,arr)){
+		//arr[xbeg+1][ybeg-2]='X';
+		return king(arr,xbeg+1,ybeg-2);
+	}
+	if(isValid(xbeg-1,ybeg+2,arr)){
+		//arr[xbeg-1][ybeg+2]='X';
+		return king(arr,xbeg-1,ybeg+2);
+	}
+	if(isValid(xbeg+1,ybeg+2,arr)){
+		//arr[xbeg+1][ybeg+2]='X';
+		return king(arr,xbeg+1,ybeg+2);
+	}
+	return false;
+}
+static boolean isValid(int x,int y,char[][]arr){
+	if (x>=0 && x<arr.length && y>=0 && y<arr.length && (arr[x][y]==' ' || arr[x][y]=='K'))
+		return true;
+	return false;
+}
+}
